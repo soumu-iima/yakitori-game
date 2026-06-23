@@ -1,94 +1,35 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>焼き職人体験</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+if (score >= 10) {
 
-    <div id="startScreen">
-        <h1>焼き職人体験</h1>
+    rank = "レジェンド級";
+    comment = "圧倒的なスピードと正確性を兼ね備えています。まさに焼き職人の達人です。";
 
-        <p>25秒で何本焼き鳥を完成できるか挑戦！</p>
+} else if (score >= 8) {
 
-        <p style="color: #b22222; font-weight: bold;">
-            正しい順番で焼き鳥を完成させましょう。
-        </p>
+    rank = "プロ級";
+    comment = "高い技術と安定感を持っています。焼き職人として頼もしい存在です。";
 
-        <img
-            src="images/start.jpg"
-            alt="ゲームスタート"
-            style="
-                width:90%;
-                max-width:420px;
-                border-radius:20px;
-                box-shadow:0 4px 10px rgba(0,0,0,0.3);
-            "
-        >
+} else if (score >= 6) {
 
-        <br><br>
+    rank = "営業所長候補";
+    comment = "素早い判断と安定した手順で、高い成果を出せるタイプです。";
 
-        <button id="startButton">ゲームスタート</button>
-    </div>
+} else if (score >= 5) {
 
-    <div id="gameScreen" style="display:none;">
-        <h1>焼き職人体験</h1>
+    rank = "リーダー候補";
+    comment = "周囲を引っ張る力があります。経験を積めばさらに成長できます。";
 
-        <p>残り時間：<span id="timeText">25</span>秒</p>
-        <p>現在の工程：<span id="stepText">モモ肉を串に刺す</span></p>
-        <p>完成本数：<span id="scoreText">0</span></p>
-        <p>ミス：<span id="missText">0</span></p>
+} else if (score >= 3) {
 
-        <p id="messageText">正しい順番で焼き鳥を完成させましょう。</p>
+    rank = "期待のホープ";
+    comment = "基本をしっかり身につけています。今後の成長が楽しみです。";
 
-        <button class="game-button btn-ura" onclick="playGame(4)">・裏返す</button><br><br>
-        <button class="game-button btn-teikyo" onclick="playGame(6)">・お客様へ提供する</button><br><br>
-        <button class="game-button btn-sumibi" onclick="playGame(3)">・炭火へ置く</button><br><br>
-        <button class="game-button btn-tare2" onclick="playGame(5)">・もう一度タレをつける</button><br><br>
-        <button class="game-button btn-momo" onclick="playGame(1)">・モモ肉を串に刺す</button><br><br>
-        <button class="game-button btn-tare" onclick="playGame(2)">・タレをつける</button>
-    </div>
+} else if (score >= 2) {
 
-    <div id="finishScreen" style="display:none;">
-        <h1>終了！</h1>
+    rank = "ルーキー";
+    comment = "少しずつコツをつかめています。まずは一歩ずつ前進です。";
 
-        <p>お疲れさまでした。</p>
-        <p>今回の結果を確認しましょう。</p>
+} else {
 
-        <button id="showResultButton">結果を見る</button>
-    </div>
-
-    <div id="resultScreen" style="display:none;">
-        <h1>今回の結果</h1>
-
-        <div id="resultText"></div>
-
-        <br>
-
-        <button onclick="location.reload()">もう一度挑戦する</button>
-
-        <br><br>
-
-        <button onclick="location.href='会社説明会URL'">
-            会社説明会を見てみる
-        </button>
-
-        <br><br>
-
-        <button onclick="location.href='LINE公式URL'">
-            LINEで気軽に相談する
-        </button>
-
-        <br><br>
-
-        <button onclick="location.href='応募フォームURL'">
-            採用応募へ進む
-        </button>
-    </div>
-
-    <script src="script.js"></script>
-
-</body>
-</html>
+    rank = "駆け出し新人";
+    comment = "これからがスタートです。何事も挑戦することが成長につながります。";
+}
