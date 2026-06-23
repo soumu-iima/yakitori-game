@@ -1,7 +1,7 @@
 let step = 1;
 let score = 0;
 let miss = 0;
-let timeLeft = 25;
+let timeLeft = 28;
 let gameOver = false;
 let timer = null;
 
@@ -137,22 +137,41 @@ function showResult() {
         bestMessage = "自己ベスト：" + bestScore + "本";
     }
 
-    if (score >= 7) {
-        rank = "営業所長候補";
-        comment = "素早い判断と安定した手順で、高い成果を出せるタイプです。";
-    } else if (score >= 5) {
-        rank = "リーダー候補";
-        comment = "周囲を引っ張る力があります。経験を積めばさらに成長できます。";
-    } else if (score >= 3) {
-        rank = "期待のホープ";
-        comment = "基本をしっかり身につけています。今後の成長が楽しみです。";
-    } else if (score >= 2) {
-        rank = "ルーキー";
-        comment = "少しずつコツをつかめています。まずは一歩ずつ前進です。";
-    } else {
-        rank = "駆け出し新人";
-        comment = "これからがスタートです。何事も挑戦することが成長につながります。";
-    }
+  if (score >= 10) {
+
+    rank = "レジェンド級";
+    comment = "圧倒的なスピードと正確性を兼ね備えています。まさに焼き職人の達人です。";
+
+} else if (score >= 8) {
+
+    rank = "プロ級";
+    comment = "高い技術と安定感を持っています。焼き職人として頼もしい存在です。";
+
+} else if (score >= 6) {
+
+    rank = "営業所長候補";
+    comment = "素早い判断と安定した手順で、高い成果を出せるタイプです。";
+
+} else if (score >= 5) {
+
+    rank = "リーダー候補";
+    comment = "周囲を引っ張る力があります。経験を積めばさらに成長できます。";
+
+} else if (score >= 3) {
+
+    rank = "期待のホープ";
+    comment = "基本をしっかり身につけています。今後の成長が楽しみです。";
+
+} else if (score >= 2) {
+
+    rank = "ルーキー";
+    comment = "少しずつコツをつかめています。まずは一歩ずつ前進です。";
+
+} else {
+
+    rank = "駆け出し新人";
+    comment = "これからがスタートです。何事も挑戦することが成長につながります。";
+}
 
     if (miss === 0) {
         missComment = "ミスなく進められました。正確性も高く、安定した仕事が期待できます。";
@@ -171,6 +190,6 @@ function showResult() {
         "<p>" + bestMessage + "</p>" +
         "<p>" + comment + "</p>" +
         "<p>" + missComment + "</p>" +
-        "<p>当社は「笑顔のみなもとであり続けます」を企業理念としている会社です。</p>" +
-"<p>竜鳳のやきとりを通じて、あなたもお客様を笑顔にしてみませんか？</p>";
+        "<p>当社は「笑顔のみなもとであり続けます」を、企業理念としている会社です。</p>" +
+"<p>竜鳳のやきとりを通じてあなたもお客様を笑顔する側の一員として活躍してみませんか？</p>";
 }
