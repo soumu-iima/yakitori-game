@@ -137,17 +137,17 @@ function showResult() {
         bestMessage = "自己ベスト：" + bestScore + "本";
     }
 
-  if (score >= 10) {
+  if (score >= 15) {
 
     rank = "レジェンド級";
     comment = "圧倒的なスピードと正確性を兼ね備えています。まさに焼き職人の達人です。";
 
-} else if (score >= 8) {
+} else if (score >= 12) {
 
     rank = "プロ級";
     comment = "高い技術と安定感を持っています。焼き職人として頼もしい存在です。";
 
-} else if (score >= 6) {
+} else if (score >= 8) {
 
     rank = "営業所長候補";
     comment = "素早い判断と安定した手順で、高い成果を出せるタイプです。";
