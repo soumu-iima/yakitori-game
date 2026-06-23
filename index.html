@@ -1,195 +1,104 @@
-let step = 1;
-let score = 0;
-let miss = 0;
-let timeLeft = 28;
-let gameOver = false;
-let timer = null;
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焼き職人体験</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-const successSound = new Audio("sounds/success.mp3");
-const missSound = new Audio("sounds/miss.mp3");
-const completeSound = new Audio("sounds/complete.mp3");
+    <div id="startScreen">
+        <h1>焼き職人体験</h1>
 
-const steps = [
-    "",
-    "モモ肉を串に刺す",
-    "タレをつける",
-    "炭火へ置く",
-    "裏返す",
-    "もう一度タレをつける",
-    "お客様へ提供する"
-];
+        <p>28秒で何本焼き鳥を完成できるか挑戦！</p>
 
-document.getElementById("startButton").addEventListener("click", startGame);
-document.getElementById("showResultButton").addEventListener("click", showResultScreen);
+        <p style="color: #b22222; font-weight: bold;">
+            正しい順番で焼き鳥を完成させましょう。
+        </p>
 
-function startGame() {
-    document.getElementById("startScreen").style.display = "none";
-    document.getElementById("gameScreen").style.display = "block";
-    document.getElementById("finishScreen").style.display = "none";
-    document.getElementById("resultScreen").style.display = "none";
+        <img
+            src="images/start.jpg"
+            alt="ゲームスタート"
+            style="
+                width:90%;
+                max-width:420px;
+                border-radius:20px;
+                box-shadow:0 4px 10px rgba(0,0,0,0.3);
+            "
+        >
 
-    updateScreen();
+        <br><br>
 
-    timer = setInterval(function () {
-        if (gameOver) return;
+        <button id="startButton">ゲームスタート</button>
+    </div>
 
-        timeLeft--;
-        document.getElementById("timeText").textContent = timeLeft;
+    <div id="gameScreen" style="display:none;">
+        <h1>焼き職人体験</h1>
 
-        if (timeLeft <= 0) {
-            endGame();
-        }
-    }, 1000);
-}
+        <p>残り時間：<span id="timeText">28</span>秒</p>
+        <p>現在の工程：<span id="stepText">モモ肉を串に刺す</span></p>
+        <p>完成本数：<span id="scoreText">0</span></p>
+        <p>ミス：<span id="missText">0</span></p>
 
-function playGame(selectedStep) {
-    if (gameOver) return;
+        <p id="messageText">正しい順番で焼き鳥を完成させましょう。</p>
 
-    if (selectedStep === step) {
-        step++;
+<div class="game-grid">
+    <button class="game-button btn-ura" onclick="playGame(4)">・裏返す</button>
 
-        if (step > 6) {
-            score++;
-            playSound(completeSound);
-            showMessage("完成！次の焼き鳥へ！", "green");
-            step = 1;
-        } else {
-            playSound(successSound);
-            showMessage("成功！", "green");
-        }
-    } else {
-        miss++;
-        timeLeft--;
+    <button class="game-button btn-momo" onclick="playGame(1)">・モモ肉を串に刺す</button>
 
-        if (timeLeft < 0) {
-            timeLeft = 0;
-        }
+    <button class="game-button btn-tare2" onclick="playGame(5)">・もう一度タレをつける</button>
 
-        document.getElementById("timeText").textContent = timeLeft;
+    <button class="game-button btn-teikyo" onclick="playGame(6)">・お客様へ提供する</button>
 
-        playSound(missSound);
-        showMessage("順番が違います！ 残り時間 -1秒", "red");
+    <button class="game-button btn-sumibi" onclick="playGame(3)">・炭火へ置く</button>
 
-        if (timeLeft <= 0) {
-            endGame();
-            return;
-        }
-    }
+    <button class="game-button btn-tare" onclick="playGame(2)">・タレをつける</button>
+</div>
 
-    updateScreen();
-}
+</div>
 
-function playSound(sound) {
-    sound.currentTime = 0;
-    sound.play();
-}
+    <div id="finishScreen" style="display:none;">
+        <h1>終了！</h1>
 
-function updateScreen() {
-    document.getElementById("stepText").textContent = steps[step];
-    document.getElementById("scoreText").textContent = score;
-    document.getElementById("missText").textContent = miss;
-}
+        <p>お疲れさまでした。</p>
+        <p>今回の結果を確認しましょう。</p>
 
-function showMessage(message, color) {
-    const msg = document.getElementById("messageText");
+        <button id="showResultButton">結果を見る</button>
+    </div>
 
-    msg.textContent = message;
-    msg.style.color = color;
-}
+    <div id="resultScreen" style="display:none;">
+        <h1>今回の結果</h1>
 
-function endGame() {
-    gameOver = true;
+        <div id="resultText"></div>
 
-    if (timer !== null) {
-        clearInterval(timer);
-    }
+        <br>
 
-    document.getElementById("gameScreen").style.display = "none";
-    document.getElementById("finishScreen").style.display = "block";
-}
+        <button onclick="location.reload()">
+    もう一度挑戦する
+</button>
 
-function showResultScreen() {
-    document.getElementById("finishScreen").style.display = "none";
-    document.getElementById("resultScreen").style.display = "block";
+<br><br>
 
-    showResult();
-}
+<button onclick="location.href='https://line.me/R/ti/p/@292bdpdc'">
+    竜鳳の公式LINEはこちら
+</button>
 
-function showResult() {
-    let rank = "";
-    let comment = "";
-    let missComment = "";
-    let bestMessage = "";
+<br><br>
 
-    let bestScore = localStorage.getItem("yakitoriBestScore");
+<button onclick="location.href='https://www.ryuho.co.jp/'">
+    会社ホームページはこちら
+</button>
 
-    if (bestScore === null) {
-        bestScore = 0;
-    } else {
-        bestScore = Number(bestScore);
-    }
+<br><br>
 
-    if (score > bestScore) {
-        localStorage.setItem("yakitoriBestScore", score);
-        bestScore = score;
-        bestMessage = "🎉 自己ベスト更新！";
-    } else {
-        bestMessage = "自己ベスト：" + bestScore + "本";
-    }
+<button onclick="location.href='https://arwrk.net/recruit/w56ah6i3lnm10p7'">
+    採用応募はこちら
+</button>
+    </div>
 
-  if (score >= 10) {
+    <script src="script.js"></script>
 
-    rank = "レジェンド級";
-    comment = "圧倒的なスピードと正確性を兼ね備えています。まさに焼き職人の達人です。";
-
-} else if (score >= 8) {
-
-    rank = "プロ級";
-    comment = "高い技術と安定感を持っています。焼き職人として頼もしい存在です。";
-
-} else if (score >= 6) {
-
-    rank = "営業所長候補";
-    comment = "素早い判断と安定した手順で、高い成果を出せるタイプです。";
-
-} else if (score >= 5) {
-
-    rank = "リーダー候補";
-    comment = "周囲を引っ張る力があります。経験を積めばさらに成長できます。";
-
-} else if (score >= 3) {
-
-    rank = "期待のホープ";
-    comment = "基本をしっかり身につけています。今後の成長が楽しみです。";
-
-} else if (score >= 2) {
-
-    rank = "ルーキー";
-    comment = "少しずつコツをつかめています。まずは一歩ずつ前進です。";
-
-} else {
-
-    rank = "駆け出し新人";
-    comment = "これからがスタートです。何事も挑戦することが成長につながります。";
-}
-
-    if (miss === 0) {
-        missComment = "ミスなく進められました。正確性も高く、安定した仕事が期待できます。";
-    } else if (miss <= 2) {
-        missComment = "ミスは少なめです。落ち着いて手順を確認できています。";
-    } else if (miss <= 5) {
-        missComment = "スピード感はあります。次は正確性をさらに意識してみましょう。";
-    } else {
-        missComment = "スピードも大切ですが、それ以上にていねいさも大切です。もう一回挑戦してみませんか？";
-    }
-
-    document.getElementById("resultText").innerHTML =
-        "<h2>" + rank + "</h2>" +
-        "<p>完成本数：" + score + "本</p>" +
-        "<p>ミス：" + miss + "回</p>" +
-        "<p>" + bestMessage + "</p>" +
-        "<p>" + comment + "</p>" +
-        "<p>" + missComment + "</p>" +
-        "<p>当社は「笑顔のみなもとであり続けます」を、企業理念としている会社です。</p>" +
-"<p>竜鳳のやきとりを通じてあなたもお客様を笑顔する側の一員として活躍してみませんか？</p>";
-}
+</body>
+</html>
