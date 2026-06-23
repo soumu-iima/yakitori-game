@@ -1,0 +1,108 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background: linear-gradient(180deg, #fff7e8, #ffe9c7, #fffdf8);
+    margin: 0;
+    padding: 20px;
+    color: #2b1608;
+}
+
+h1 {
+    font-size: 34px;
+    margin-bottom: 20px;
+    color: #7a2500;
+}
+
+p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#startScreen,
+#gameScreen,
+#resultScreen {
+    max-width: 480px;
+    margin: 0 auto;
+    background: rgba(255, 252, 245, 0.96);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+button {
+    width: 90%;
+    max-width: 420px;
+    padding: 16px;
+    font-size: 18px;
+    border-radius: 14px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    background: #d2691e;
+    box-shadow: 0 4px 0 #9a4b16;
+}
+
+button:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #9a4b16;
+}
+
+.game-button {
+    height: 120px;
+    background-size: cover;
+    background-position: center;
+    text-shadow: 2px 2px 6px black;
+    border: 3px solid #8b5a2b;
+    font-size: 22px;
+}
+
+.game-button:disabled {
+    opacity: 0.5;
+}
+
+#messageText {
+    font-weight: bold;
+    font-size: 20px;
+    min-height: 28px;
+}
+
+#resultText {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 24px;
+}
+
+#resultText h2 {
+    color: #5a3a1e;
+    font-size: 32px;
+}
+
+#resultText h3 {
+    color: #7a2500;
+    font-size: 22px;
+}
+
+.btn-ura {
+    background-image: url("images/ura.jpg");
+}
+
+.btn-teikyo {
+    background-image: url("images/teikyo.jpg");
+}
+
+.btn-sumibi {
+    background-image: url("images/sumibi.jpg");
+}
+
+.btn-tare2 {
+    background-image: url("images/tare2.jpg");
+}
+
+.btn-momo {
+    background-image: url("images/momo.jpg");
+}
+
+.btn-tare {
+    background-image: url("images/tare.jpg");
+}
